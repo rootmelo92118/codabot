@@ -5,9 +5,6 @@ client = LINE()
 
 oepoll = OEPoll(client)
 
-
-
-
 def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
@@ -16,9 +13,11 @@ def RECEIVE_MESSAGE(op):
                 n = 2
                 str1 = find_between_r(msg.text, "更新: ", "~")
                 str2 = find_between_r(msg.text, "~", "")
-                str3 = str1 + str2
-                str4 = str3 / n
-                client.sendMessage(msg.to, "!coda " + str4)
+                int3 = int(str1)
+                int4 = int(str2)
+                int5 = int3 + int4
+                str6 = str(int5 / 2)
+                client.sendMessage(msg.to, "!coda " + str6)
             else:
                 pass
         else:
