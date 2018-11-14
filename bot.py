@@ -7,21 +7,6 @@ oepoll = OEPoll(client)
 
 
 
-def NOTIFIED_INVITE_INTO_GROUP(op):
-    try:
-        client.acceptGroupInvitation(op.param1)
-    except Exception as e:
-        print(e)
-        print("\n\nNOTIFIED_INVITE_INTO_GROUP\n\n")
-        return
-    
-def CREATE_GROUP(op):
-    try:
-        client.leaveGroup(op.param1)
-    except Exception as e:
-        print(e)
-        print("\n\nCREATE_GROUP\n\n")
-        return
 
 def RECEIVE_MESSAGE(op):
     msg = op.message
