@@ -16,7 +16,7 @@ def RECEIVE_MESSAGE(op):
                 int3 = int(str1)
                 int4 = int(str2)
                 int5 = int3 + int4
-                str6 = str(int5 / 2)
+                str6 = str(round(int5 / 2))
                 client.sendMessage(msg.to, "!coda " + str6)
             else:
                 pass
