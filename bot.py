@@ -13,10 +13,11 @@ def RECEIVE_MESSAGE(op):
     try:
         if msg.toType == 2:
             if msg.text.startswith("更新: "):
+                n = 2
                 str1 = find_between_r(msg.text, "更新: ", "~")
                 str2 = find_between_r(msg.text, "~", "")
-                str3 = str1+str2
-                str4 = str3/2
+                str3 = str1 + str2
+                str4 = str3 / n
                 client.sendMessage(msg.to, "!coda " + str4)
             else:
                 pass
