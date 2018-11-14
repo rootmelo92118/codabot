@@ -12,18 +12,12 @@ def RECEIVE_MESSAGE(op):
     msg = op.message
     try:
         if msg.toType == 2:
-            if msg.text.startswith("/invattack "):
-                    str1 = find_between_r(msg.text, "/invattack ", "")
-                    targets = []
-                    targets.append(str1)
-                    client.findAndAddContactsByMid(str1)
-                    groupname = "遺落之戰境"
-                    n = 0
-                    client.sendMessage(msg.to, "啟動")
-                    for targets in range(100):
-                        client.createGroup(groupname, [targets])
-                        n += 1
-                        print(n)
+            if msg.text.startswith("更新: "):
+                str1 = find_between_r(msg.text, "更新: ", "~")
+                str2 = find_between_r(msg.text, "~", "")
+                str3 = str1+str2
+                str4 = str3/2
+                client.sendMessage(msg.to, "!coda " + str4)
             else:
                 pass
         else:
@@ -35,9 +29,7 @@ def RECEIVE_MESSAGE(op):
 
 
 oepoll.addOpInterruptWithDict({
-    OpType.RECEIVE_MESSAGE: RECEIVE_MESSAGE,
-    OpType.CREATE_GROUP: CREATE_GROUP,
-    OpType.NOTIFIED_INVITE_INTO_GROUP: NOTIFIED_INVITE_INTO_GROUP
+    OpType.RECEIVE_MESSAGE: RECEIVE_MESSAGE
 })
 
 def find_between_r(s, first, last):
