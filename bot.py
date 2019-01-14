@@ -5,31 +5,25 @@ client = LINE()
 
 oepoll = OEPoll(client)
 
-def RECEIVE_MESSAGE(op):
+def SEND_MESSAGE(op):
     msg = op.message
     try:
         if msg.toType == 2:
-            if msg.text.startswith("更新: "):
-                n = 2
-                str1 = find_between_r(msg.text, "更新: ", "~")
-                str2 = find_between_r(msg.text, "~", "")
-                int3 = int(str1)
-                int4 = int(str2)
-                int5 = int3 + int4
-                str6 = str(round(int5 / 2))
-                client.sendMessage(msg.to, "!coda " + str6)
+            if msg.text.startswith("/invite "):
+                str1 = find_between_r(msg.text, "/invite ", "")
+                client.inviteIntoGroup(msg.to, [str1])
             else:
                 pass
         else:
             pass
     except Exception as error:
         print(error)
-        print("\n\nRECEIVE_MESSAGE\n\n")
+        print("\n\nSEND_MESSAGE\n\n")
         return
 
 
 oepoll.addOpInterruptWithDict({
-    OpType.RECEIVE_MESSAGE: RECEIVE_MESSAGE
+    OpType.SEND_MESSAGE: SEND_MESSAGE
 })
 
 def find_between_r(s, first, last):
